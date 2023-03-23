@@ -17,11 +17,14 @@ function frameRendering() {
   
   function takePhotoSaveData(){
     let dataM = dataO.slice();  //The data we will manipulate
+    console.log(typeof dataM);
+
     for (let i = 1; i <= dataM.length/4; i++) {
       dataM.splice(i, 1); //Takes out from i element, just 1 element.
     }
     console.log(dataM.length);
 
+    //Algo más desarrollado que un prompt... darle la opción de contribuir con varias fotos a un mismo lugar... seleccionando el lugar si ya está disponible (y agregar rutina para organizar los lugares  :')
     let msgImage = prompt("Introduzca una breve descripción del lugar que ve", "Aquí se puede ver...");
     if(msgImage != null) localStorage.setItem(msgImage, JSON.stringify(dataM));
   }
@@ -48,6 +51,6 @@ function frameRendering() {
     }
         
     Ictx.putImageData(iDisplay, 0, 0);
-    console.timeEnd("invertColor");
+    //console.timeEnd("invertColor");
     //setTimeout(invertColor, 3.33);
   }
