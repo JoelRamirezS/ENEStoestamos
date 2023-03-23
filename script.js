@@ -19,6 +19,7 @@ function frameRendering() {
     let dataM = dataO.slice();  //The data we will manipulate
     console.log(typeof dataM);
 
+    console.log(dataM);
     for (let i = 1; i <= dataM.length/4; i++) {
       dataM.splice(i, 1); //Takes out from i element, just 1 element.
     }
