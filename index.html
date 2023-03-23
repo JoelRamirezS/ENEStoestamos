@@ -12,9 +12,9 @@
       /* -webkit-box-shadow: -4px 7px 34px 13px rgba(255,255,255,0.62);  */
 
     }
-    /* video{
+    video{
       display: none;
-    } */
+    } 
 
     canvas {
       box-shadow: -4px 7px 34px 13px white;
@@ -28,7 +28,9 @@
 
     <br>
     <h3>This is the page where you will be able to... get information about the space arround you.</h3>
-    
+    <br>
+    <h2 onclick="takePhotoSaveData()">SaveDataToLearn</h2>
+    <h2 onclick="exportData()">ExportDataToLearn</h2>
     <br>
     <video id="videoO"></video>
     <canvas id="Vcanvas"></canvas>
@@ -73,6 +75,7 @@
       
         setInterval(frameRendering, 33.33);
         setTimeout(invertColor, 33.33);
+        setTimeout(whereIam, 50);
       
     }).catch(console.error);
     };
