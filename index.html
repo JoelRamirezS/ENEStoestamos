@@ -29,12 +29,19 @@
     <br>
     <h3>This is the page where you will be able to... get information about the space arround you.</h3>
     <br>
-    <h2 onclick="takePhotoSaveData()">SaveDataToLearn</h2>
-    <h2 onclick="exportData()">ExportDataToLearn</h2>
+    <select id="objectSeen">
+      <option value="chair01">The Blue Chair</option>
+      <option value="floor01">The gray floor</option>
+    </select>
     <br>
+    <h2 onclick="takePhotoSaveData()">SaveDataToLearn</h2>
+    
     <video id="videoO"></video>
     <canvas id="Vcanvas"></canvas>
     <canvas id="Icanvas"></canvas>
+    <br>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 
     <script>
         //https://jsfiddle.net/rxbe1zj3/
@@ -50,10 +57,11 @@
     
     
     //localStorage.setItem('pW', '1920'); //localStorage.getItem('pH')
+    //.getItem, key, setItem, length, removeItem
     //JSON.parse("text") // JSON.stringify(object);
     
     var dataO, dataI, iData = [];
-    const pW = 192, pH = 144;
+    const pW = /*192*/32, pH = /*144*/32;
 
     window.onload = ()=>{
       navigator.mediaDevices.getUserMedia({
@@ -65,17 +73,16 @@
         facingMode: 'environment' //or "user"
       }
     }).then(stream => {
-        videoO.srcObject = stream;
-
-        Vcanvas.width = Icanvas.width = pW;
-        Vcanvas.height = Icanvas.height = pH;
-        
-        videoO.volume = 0;
-        videoO.play();
+      videoO.srcObject = stream;
+      Vcanvas.width = Icanvas.width = pW;
+      Vcanvas.height = Icanvas.height = pH;
       
-        setInterval(frameRendering, 33.33);
-        setTimeout(invertColor, 33.33);
-        setTimeout(whereIam, 50);
+      videoO.volume = 0;
+      videoO.play();
+    
+      setTimeout(frameRendering, 1);
+      setTimeout(invertColor, 33.33);
+      setTimeout(updateHistogram, 40);
       
     }).catch(console.error);
     };
